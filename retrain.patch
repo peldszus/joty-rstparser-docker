@@ -1,0 +1,26 @@
+6a7,8
+> from argparse import ArgumentParser
+> 
+484c486
+< def do_segment(infile):
+---
+> def do_segment(infile, train=False):
+491c493,494
+<         #train_model("train.seg")
+---
+>         if train:
+>             train_model("train.seg")
+498,501c501,508
+< if __name__ == "__main__":    
+<     do_segment(sys.argv[1])
+< #    do_segment("tmp.raw")
+<    
+---
+> 
+> if __name__ == "__main__":
+>     parser = ArgumentParser(description='Discourse segmenter')
+>     parser.add_argument('--train', '-t', action='store_true',
+>                         help='retrain the segmentation model')
+>     parser.add_argument('input', help='input text file')
+>     args = parser.parse_args()
+>     do_segment(args.input, train=args.train)
