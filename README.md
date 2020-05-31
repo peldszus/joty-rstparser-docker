@@ -4,7 +4,7 @@ Dockerfile for the Joty 2013 RST Parser
 About the Dockerfile
 --------------------
 
-This Dockerfile provides a full environment for running the Joty 2013 RST Parser on bare text. It includes all dependencies, a simple patch to re-train the discourse segmenter via commandline and for convenience, a bash script to robustly parse a larger collection of texts without having issues of old temporary files.
+This Dockerfile provides a full environment for running the Joty 2013 RST Parser on bare text. It installs all necessary dependencies. It additionally contains a simple patch to re-train the discourse segmenter via commandline and for convenience, a bash script to robustly parse a larger collection of texts without having issues of old temporary files.
 
 Note: Do not run the same parser instance in parallel, as the parser relies on hardcoded temporary files.
 
@@ -17,6 +17,8 @@ cd Discourse_Parser_Dist/
 ./parse.sh /samples/example.txt
 cat /samples/example.txt.rst
 ```
+
+Note: Building the dockerimage can take a while, since this project relies on old versions of numpy and sklearn, which need to compile extensions from source.
 
 
 About the RST Parser

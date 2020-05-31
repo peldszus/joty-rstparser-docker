@@ -1,16 +1,16 @@
 FROM java:7
 
-MAINTAINER Andreas Peldszus "peldszus@uni-potsdam.de"
+MAINTAINER Andreas Peldszus "andreas.peldszus@posteo.de"
 
-# Installs python
+# Update the python2.7 environment used here
 RUN apt-get update \
 	&& apt-get install -y --force-yes python python-dev python-pip python-virtualenv
 
 # Installs python packages
 RUN apt-get update \
 	&& apt-get install -y libblas-dev liblapack-dev libatlas-base-dev gfortran \
-	&& pip install --upgrade pip \
-	&& pip install numpy scipy sklearn nltk
+	&& pip install numpy==1.11.1 \
+	&& pip install scipy==0.17.1 scikit-learn==0.17.1 nltk==3.2.1
 
 # Download and install discourse parser distribution
 RUN wget http://alt.qcri.org/tools/discourse-parser/releases/current/Discourse_Parser_Dist.tar.gz \
